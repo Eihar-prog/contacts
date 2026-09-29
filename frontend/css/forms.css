@@ -1,0 +1,280 @@
+/* ============================================
+   forms.css — Стили формы создания контакта
+   ============================================ */
+
+/* ---------- Контейнер формы ---------- */
+.create-form {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.create-form__title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+/* ---------- Поле ввода ---------- */
+.field {
+  margin-bottom: 10px;
+}
+
+.field__label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.field__input {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  font-size: var(--fs-sm);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.field__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.field__input:hover {
+  border-color: var(--color-text-muted);
+}
+
+.field__input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background-color: var(--color-surface);
+}
+
+.field__textarea {
+  display: block;
+  width: 100%;
+  min-height: 54px;
+  padding: 7px 10px;
+  font-size: var(--fs-sm);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  resize: vertical;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  line-height: 1.4;
+}
+
+.field__textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.field__textarea:hover {
+  border-color: var(--color-text-muted);
+}
+
+.field__textarea:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background-color: var(--color-surface);
+}
+
+/* ---------- Панель добавления блоков ---------- */
+.add-panel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: var(--color-accent-light);
+  border: 1px dashed var(--color-accent);
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+}
+
+.add-panel__hint {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-accent);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.add-panel__buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Контейнер блоков ---------- */
+.blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+  min-height: 40px;
+}
+
+/* ---------- Динамический блок (info/contact/site) ---------- */
+.block {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.block:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-focus);
+}
+
+.block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 12px;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.block__label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.block__label-icon {
+  margin-right: 6px;
+}
+
+.block__delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.block__delete:hover {
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+.block__body {
+  padding: 8px 12px;
+}
+
+.block__body .field:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Блок: Site (особый — один input) ---------- */
+.block--site .block__body {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.block--site .block__body .field {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* ---------- Блок: Contact (селекты + статус) ---------- */
+.contact-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.contact-row .field {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.contact-row .field--type {
+  flex: 0 0 150px;
+}
+
+.contact-row .field--status {
+  flex: 0 0 140px;
+}
+
+/* ---------- Селект ---------- */
+.field__select {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  font-size: var(--fs-sm);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.field__select:hover {
+  border-color: var(--color-text-muted);
+}
+
+.field__select:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background-color: var(--color-surface);
+}
+
+/* ---------- Блок: Info (заголовок + textarea) ---------- */
+.block--info .block__body .field:first-child .field__input {
+  font-weight: 500;
+}
+
+/* ---------- Кнопки формы ---------- */
+.create-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 6px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+/* Кнопка «Отмена» — видна только в режиме редактирования */
+.create-form__actions .btn--cancel {
+  display: none;
+}
+
+.create-form__actions .btn--cancel.is-visible {
+  display: inline-flex;
+}
+
+/* Заголовок формы в режиме редактирования */
+.create-form__title--edit {
+  color: var(--color-accent);
+}

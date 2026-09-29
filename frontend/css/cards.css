@@ -1,0 +1,507 @@
+/* ============================================
+   cards.css — Стили для просмотра контактов
+   ============================================ */
+
+/* ---------- Контейнер ---------- */
+.contacts-view {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.contacts-view__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.contacts-view__titles {}
+
+.contacts-view__title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.contacts-view__subtitle {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* ---------- Переключатель вида (сетка/список) ---------- */
+.view-toggle {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.view-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 26px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.view-toggle__btn:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text-secondary);
+}
+
+.view-toggle__btn--active {
+  background-color: var(--color-surface) !important;
+  color: var(--color-accent) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Поиск ---------- */
+.search-bar {
+  margin-bottom: 12px;
+}
+
+.search-bar__input {
+  display: block;
+  width: 100%;
+  padding: 7px 10px 7px 32px;
+  font-size: var(--fs-sm);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+
+.search-bar__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.search-bar__input:hover {
+  border-color: var(--color-text-muted);
+}
+
+.search-bar__input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background-color: var(--color-surface);
+}
+
+/* ---------- Сетка карточек ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  transition: grid-template-columns var(--transition);
+}
+
+/* Режим списка — одна колонка на всю ширину */
+.cards--list {
+  grid-template-columns: 1fr;
+}
+
+.cards--list .card__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 16px;
+}
+
+.cards--list .card__field--info {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Пустое состояние ---------- */
+.cards__empty {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.cards__empty-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+  opacity: 0.4;
+}
+
+.cards__empty p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
+}
+
+.cards__empty-hint {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted) !important;
+}
+
+/* ---------- Карточка контакта ---------- */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+  cursor: default;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-focus);
+  transform: translateY(-1px);
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border-light);
+  background-color: var(--color-bg);
+}
+
+.card__name {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.card__actions {
+  display: flex;
+  gap: 4px;
+}
+
+.card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.card__btn:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.card__btn--edit:hover {
+  color: var(--color-accent);
+  background-color: var(--color-accent-light);
+}
+
+.card__btn--delete:hover {
+  color: var(--color-danger);
+  background-color: var(--color-danger-light);
+}
+
+.card__body {
+  padding: 6px 12px;
+}
+
+.card__field {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 4px 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.card__field:last-child {
+  border-bottom: none;
+}
+
+.card__field-icon {
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.card__field-label {
+  flex-shrink: 0;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  min-width: 40px;
+}
+
+.card__field-value {
+  flex: 1;
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+.card__field-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: box-shadow var(--transition);
+}
+
+/* Подсказка при наведении на статус (можно менять по месту) */
+.card__field-status:hover {
+  box-shadow: 0 0 0 1px var(--color-text-muted);
+}
+
+/* Пустой статус — пунктир, чтобы было видно, что он кликабелен */
+.card__field-status--empty {
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+  border: 1px dashed var(--color-border);
+}
+
+/* ---------- Кнопка «копировать» на карточке ---------- */
+.card__copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  flex-shrink: 0;
+  transition: opacity var(--transition), background-color var(--transition),
+    color var(--transition), border-color var(--transition);
+}
+
+/* Показываем кнопку при наведении на поле */
+.card__field:hover .card__copy-btn {
+  opacity: 1;
+}
+
+.card__copy-btn:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Состояние «скопировано» */
+.card__copy-btn--copied {
+  opacity: 1 !important;
+  background-color: #dcfce7 !important;
+  color: #16a34a !important;
+  border-color: #16a34a !important;
+}
+
+/* ---------- Кликабельная ссылка (Site) ---------- */
+.card__field-link {
+  flex: 1;
+  min-width: 0;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+
+.card__field-link:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ---------- Инлайн-редактор статуса ---------- */
+.card__status-editor {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card__status-select {
+  padding: 2px 6px;
+  font-size: var(--fs-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+}
+
+.card__status-confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-success);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  transition: filter var(--transition);
+}
+
+.card__status-confirm:hover {
+  filter: brightness(1.1);
+}
+
+.card__field-status--sent {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.card__field-status--viewed {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.card__field-status--replied {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.card__field-status--ignored {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.card__field-status--rejected {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+/* ---------- Сворачиваемые Info-блоки на карточке ---------- */
+.card__field--info {
+  position: relative;
+  padding-right: 48px;
+}
+
+/* Кнопка копирования у Info — рядом с кнопкой сворачивания */
+.card__field--info .card__copy-btn {
+  position: absolute;
+  right: 26px;
+  top: 5px;
+}
+
+.card__field--info .card__info-toggle {
+  right: 4px;
+}
+
+.card__field--info .card__field-value {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Свёрнутое состояние — одна строка */
+.card__field-value--collapsed {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* Развёрнутое состояние — весь текст */
+.card__field-value--expanded {
+  white-space: normal;
+  overflow: visible;
+}
+
+/* Кнопка +/− для сворачивания */
+.card__info-toggle {
+  position: absolute;
+  right: 0;
+  top: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+  flex-shrink: 0;
+}
+
+.card__info-toggle:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* В режиме списка у info-блоков больше места для текста */
+.cards--list .card__field--info .card__field-value {
+  max-width: none;
+}
+
+/* ---------- Мета-информация карточки ---------- */
+.card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px 12px;
+  border-top: 1px solid var(--color-border-light);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg);
+}
+
+/* ---------- Превью (заменён на card__body, оставлен для совместимости) ---------- */
+.card__preview {
+  display: none;
+}

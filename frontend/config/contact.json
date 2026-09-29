@@ -1,0 +1,30 @@
+{
+  "description": "Схема типов контактов для блока Contact",
+  "types": [
+    {
+      "id": "phone",
+      "label": "Телефон",
+      "icon": "📞",
+      "hasSubtypes": false,
+      "placeholder": "+7 (999) 123-45-67"
+    },
+    {
+      "id": "email",
+      "label": "Email",
+      "icon": "📧",
+      "hasSubtypes": false,
+      "placeholder": "user@example.com"
+    },
+    {
+      "id": "sm",
+      "label": "Соцсети",
+      "icon": "🌐",
+      "hasSubtypes": true,
+      "subtypes": [
+        { "id": "tg",  "label": "Telegram",   "icon": "✈️", "placeholder": "@username" },
+        { "id": "inst", "label": "Instagram",  "icon": "📸", "placeholder": "@username" },
+        { "id": "whatsapp", "label": "WhatsApp", "icon": "💬", "placeholder": "+7 (999) 000-00-00" }
+      ]
+    }
+  ]
+}

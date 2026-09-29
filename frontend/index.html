@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacts — База контактов</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>📇</text></svg>"
+      type="image/svg+xml"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="layout">
+        <!-- ====== Левый сайдбар ====== -->
+        <aside class="sidebar">
+          <div class="sidebar__top">
+            <span class="sidebar__logo">C</span>
+            <span class="sidebar__title">Contacts</span>
+          </div>
+
+          <nav class="sidebar__nav" role="tablist">
+            <button
+              class="sidebar__btn sidebar__btn--active"
+              role="tab"
+              aria-selected="true"
+              data-tab="create"
+            >
+              <span class="sidebar__btn-icon">✏️</span>
+              <span class="sidebar__btn-label">Создать контакт</span>
+            </button>
+            <button
+              class="sidebar__btn"
+              role="tab"
+              aria-selected="false"
+              data-tab="view"
+            >
+              <span class="sidebar__btn-icon">📇</span>
+              <span class="sidebar__btn-label">Мои контакты</span>
+              <span class="sidebar__counter">0</span>
+            </button>
+          </nav>
+
+          <div class="sidebar__bottom">
+            <button
+              class="sidebar__create-btn"
+              id="btnCreateDb"
+              title="Создать новую базу данных"
+            >
+              <span class="sidebar__btn-icon">🆕</span>
+              <span class="sidebar__btn-label">Создать БД</span>
+            </button>
+            <button
+              class="sidebar__open-btn"
+              id="btnOpenDb"
+              title="Открыть существующую БД"
+            >
+              <span class="sidebar__btn-icon">📂</span>
+              <span class="sidebar__btn-label">Открыть БД</span>
+            </button>
+          </div>
+        </aside>
+
+        <!-- ====== Основной контент ====== -->
+        <main class="main">
+          <!-- Вкладка: Создать контакт -->
+          <section
+            class="tab-content tab-content--active"
+            role="tabpanel"
+            id="tabCreate"
+          >
+            <div class="create-form">
+              <h2 class="create-form__title">Новый контакт</h2>
+
+              <!-- Имя контакта -->
+              <div class="field">
+                <label class="field__label" for="contactName"
+                  >Имя контакта</label
+                >
+                <input
+                  type="text"
+                  class="field__input"
+                  id="contactName"
+                  placeholder="Например: Иван Иванов"
+                />
+              </div>
+
+              <!-- Панель добавления блоков -->
+              <div class="add-panel">
+                <span class="add-panel__hint">Добавить блок:</span>
+                <div class="add-panel__buttons">
+                  <button class="btn btn--primary" data-add="info">
+                    ➕ Info
+                  </button>
+                  <button class="btn btn--primary" data-add="contact">
+                    ➕ Contact
+                  </button>
+                  <button class="btn btn--primary" data-add="site">
+                    ➕ Site
+                  </button>
+                </div>
+              </div>
+
+              <!-- Контейнер для динамических блоков -->
+              <div class="blocks" id="blocksContainer">
+                <!-- Сюда будут добавляться блоки через JS -->
+              </div>
+
+              <!-- Кнопки сохранения / отмены -->
+              <div class="create-form__actions">
+                <button class="btn btn--secondary btn--cancel" id="btnCancelEdit">
+                  Отмена
+                </button>
+                <button class="btn btn--primary" id="btnSave">
+                  💾 Сохранить контакт
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Вкладка: Мои контакты -->
+          <section class="tab-content" role="tabpanel" id="tabView">
+            <div class="contacts-view">
+              <div class="contacts-view__header">
+                <div class="contacts-view__titles">
+                  <h2 class="contacts-view__title">Мои контакты</h2>
+                  <p class="contacts-view__subtitle">
+                    Список всех сохранённых контактов
+                  </p>
+                </div>
+                <div class="view-toggle" id="viewToggle">
+                  <button
+                    class="view-toggle__btn view-toggle__btn--active"
+                    data-view="grid"
+                    title="Сетка (две колонки)"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <rect
+                        x="1"
+                        y="1"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                      <rect
+                        x="9"
+                        y="1"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                      <rect
+                        x="1"
+                        y="9"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                      <rect
+                        x="9"
+                        y="9"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="view-toggle__btn"
+                    data-view="list"
+                    title="Список (одна колонка)"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <rect
+                        x="1"
+                        y="1"
+                        width="14"
+                        height="4"
+                        rx="1.5"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                      <rect
+                        x="1"
+                        y="6"
+                        width="14"
+                        height="4"
+                        rx="1.5"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                      <rect
+                        x="1"
+                        y="11"
+                        width="14"
+                        height="4"
+                        rx="1.5"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Поиск -->
+              <div class="search-bar">
+                <input
+                  type="text"
+                  class="search-bar__input"
+                  placeholder="🔍 Поиск контактов..."
+                  id="searchInput"
+                />
+              </div>
+
+              <!-- Список карточек -->
+              <div class="cards" id="cardsContainer">
+                <div class="cards__empty">
+                  <span class="cards__empty-icon">📭</span>
+                  <p>Контактов пока нет</p>
+                  <p class="cards__empty-hint">
+                    Создайте первый контакт на вкладке «Создать контакт»
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+      <!-- /.layout -->
+
+      <!-- ====== Подвал ====== -->
+      <footer class="footer">
+        <div class="footer__status">
+          <span class="footer__status-dot"></span>
+          <span>База не открыта</span>
+        </div>
+        <span class="footer__version">v0.1</span>
+      </footer>
+    </div>
+
+    <!-- ====== Модальное окно подтверждения удаления ====== -->
+    <div class="modal-overlay" id="modalDelete">
+      <div class="modal">
+        <div class="modal__header">
+          <span class="modal__icon">🗑️</span>
+          <span class="modal__title">Удаление контакта</span>
+        </div>
+        <div class="modal__body">
+          <p>Вы уверены, что хотите удалить контакт</p>
+          <p class="modal__name" id="modalDeleteName"></p>
+          <p class="modal__hint">Это действие нельзя отменить.</p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--secondary" id="modalCancel">Отмена</button>
+          <button class="btn btn--danger" id="modalConfirm">🗑️ Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Модальное окно обнаружения дубликата ====== -->
+    <div class="modal-overlay" id="modalDuplicate">
+      <div class="modal">
+        <div class="modal__header">
+          <span class="modal__icon">⚠️</span>
+          <span class="modal__title">Контакт уже существует</span>
+        </div>
+        <div class="modal__body">
+          <p>Контакт с именем</p>
+          <p class="modal__name" id="modalDuplicateName"></p>
+          <p class="modal__hint">уже есть в базе. Что делаем?</p>
+        </div>
+        <div class="modal__footer modal__footer--three">
+          <button class="btn btn--secondary" id="dupCancel">Отмена</button>
+          <button class="btn btn--secondary" id="dupKeepBoth">
+            📝 Оставить оба
+          </button>
+          <button class="btn btn--primary" id="dupReplace">🔄 Заменить</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('pywebviewready', () => {
+        console.log('Событие pywebviewready сработало');
+        console.log('pywebview.api =', globalThis.pywebview?.api);
+      });
+    </script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

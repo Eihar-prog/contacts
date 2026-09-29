@@ -1,0 +1,11 @@
+{
+  "description": "Статусы рассылки для отслеживания реакции контакта",
+  "statuses": [
+    { "id": "",        "label": "— Не выбран",    "color": "#9ca3af", "cssClass": "" },
+    { "id": "sent",    "label": "Отправлено",     "color": "#2563eb", "cssClass": "card__field-status--sent" },
+    { "id": "viewed",  "label": "Просмотрено",    "color": "#16a34a", "cssClass": "card__field-status--viewed" },
+    { "id": "replied", "label": "Ответили",       "color": "#d97706", "cssClass": "card__field-status--replied" },
+    { "id": "ignored", "label": "Игнор",          "color": "#6b7280", "cssClass": "card__field-status--ignored" },
+    { "id": "rejected","label": "Отказ",          "color": "#dc2626", "cssClass": "card__field-status--rejected" }
+  ]
+}
